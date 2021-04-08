@@ -1,23 +1,32 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+      <h1>doggo</h1>
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
+      <select class="breeds" name="breeds">
+        <option v-for="(race, index) in breeds.message">
+          {{index}}
+        </option>
+      </select>
+
     </div>
 </template>
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+      data(){
+          return {
+              breeds:null
+          }
+      },
+
+      methods:{
+
+      },
+
+      mounted() {
+        fetch('https://dog.ceo/api/breeds/list/all')
+          .then(response => response.json())
+          .then(data => this.breeds = data);
+      }
     }
 </script>

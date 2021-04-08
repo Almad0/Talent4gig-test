@@ -1968,12 +1968,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      breeds: null
+    };
+  },
+  methods: {},
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    fetch('https://dog.ceo/api/breeds/list/all').then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      return _this.breeds = data;
+    });
   }
 });
 
@@ -37640,32 +37649,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("h1", [_vm._v("doggo")]),
+    _vm._v(" "),
+    _c(
+      "select",
+      { staticClass: "breeds", attrs: { name: "breeds" } },
+      _vm._l(_vm.breeds.message, function(race, index) {
+        return _c("option", [_vm._v("\n      " + _vm._s(index) + "\n    ")])
+      }),
+      0
+    )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
